@@ -1,3 +1,17 @@
+.hero-body {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 3rem 1.5rem;
+    height: 650px!important;
+    z-index: 0;
+    background-image: url("../media/background2.jpg")
+}
+
+.navbar.is-info {
+    background-image: linear-gradient(to right, #ffe3d7, #ffe3d7,#ffe3d7, #ffe3d7, #ffe6d7, #ffe3d7, #ffcac0, #ffc1bc, #f9bdbd, #fbbdbb, #dfb2c6, #b4add5, #99a1d2);
+    color: #fff;
+}
+
 .tabs {
 margin-bottom: -1px !important;
 position: relative;
