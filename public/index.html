@@ -10,10 +10,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-    <script
-      defer
-      src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"
-    ></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
@@ -44,57 +42,31 @@
               is-8 is-offset-2 is-6-widescreen is-offset-3-widescreen
             "
           >
-            <p class="title is-1">DiscoverIt</p>
+            <p class="title is-1 has-text-info has-text-weight-bold"><i class="fas fa-route mr-2"></i>DiscoverIt</p>
             <div class="container area-center">
-              <div class="buttons is-centered">
-                <a class="button is-medium is-google" onclick="signIn()">
-                  <span class="icon">
-                    <i class="fab fa-google fa-lg"></i>
-                  </span>
-                </a>
-              </div>
-              <p class="subtitle is-4">
-                Our website is under construction, but we are ready to go! Want
-                to know more about us, tell us about your project or just to say
-                hello? Contact us on social media and we will get back as soon
-                as possible.
+              <p class="title is-9 has-text-centered">
+                Your perfect trip,
+                crowdsourced
               </p>
-              <br />
-            </div>
-            <form>
-              <div class="field has-addons has-addons-centered">
-                <p class="control has-icons-left has-icons-right">
-                  <input
-                    class="input is-medium"
-                    type="email"
-                    placeholder="Email"
-                  />
-                  <span class="icon is-medium is-left">
-                    <i class="fas fa-envelope"></i>
+              <p class="subtitle is-4">
+                Imagine organizing your entire itinerary in advance, then receiving and sharing real time updates as you travel. Effortlessly immerse yourself in communities and support local businesses, all from one website.
+              </p>
+              <div class="is-centered"></div>
+                <button class="button is-light" onclick="signIn()">
+                  <span class="icon is-normal">
+                    <i class="fab fa-google"></i>
                   </span>
-                  <span class="icon is-medium is-right">
-                    <i class="fas fa-check"></i>
-                  </span>
-                </p>
+                  <span>Sign in with Google</span>
+                </button>
               </div>
-              <button class="button is-info is-large">
-                <span class="icon">
-                  <i class="far fa-bell"></i>
-                </span>
-                <span>Notify me</span>
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
       <div class="hero-foot">
         <div class="container has-text-centered">
           <p class="footer-text">
-            <a href="https://www.aldiduzha.com?utm_source=Github"
-              >Designed with
-              <i class="fa fa-heart fa-fw heart"></i>
-              by Divya, David, and Nithila</a
-            >
+            Built with Bulma and Firebase
           </p>
         </div>
       </div>
