@@ -4,7 +4,7 @@ body {
   font-size: 14px;
   font-weight: 300;
 }
-html {
+.hero {
   overflow-y: hidden !important;
   background-image: url("../media/background.jpg"),
     linear-gradient(
