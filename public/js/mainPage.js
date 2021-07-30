@@ -31,3 +31,28 @@ function toggleTab(selectedNav, targetId) {
 
 
 //This section has our code
+
+const signOut = () => {
+    firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+    window.location = 'index.html';
+    console.log("sign out clicked");
+    }).catch((error) => {
+    //An error happened.
+    //Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    const err = {
+      errorCode,
+      errorMessage,
+      email,
+      credential
+    };
+    console.log(err);
+    });
+
+}
