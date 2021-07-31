@@ -56,3 +56,10 @@ const signOut = () => {
     });
 
 }
+
+function switchProfile () {
+    
+    console.log("profile page");
+    window.location = 'profile.html';
+
+}

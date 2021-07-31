@@ -12,10 +12,18 @@
     color: #fff;
 }
 
+.upload-text {
+    color: blue;
+    font-size: 30px;
+}
+
+
 .tabs {
 margin-bottom: -1px !important;
 position: relative;
+height: 100px!important;
 }
+
 .tab-content {
 padding: 60px;
 top: 197px;
