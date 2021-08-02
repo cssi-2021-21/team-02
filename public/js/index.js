@@ -5,11 +5,10 @@ window.onload = (event) => {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log("Logged in as: " + user.displayName);
+      document.querySelector("#signInButton").classList.add("is-hidden");
+      document.querySelector("#gotoPortalButton").classList.remove("is-hidden");
       googleUserId = user.uid;
-      getNotes(googleUserId);
     } else {
-      // If not logged in, navigate back to login page.
-      window.location = "index.html";
       console.log("not logged in");
       // show button to user portal
     }
