@@ -19,6 +19,7 @@
     <script defer src="/__/firebase/8.8.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/8.8.1/firebase-database.js"></script>
     <script defer src="js/signin.js"></script>
+    <script defer src="js/index.js"></script>
     <!-- <script defer src="/__/firebase/8.8.1/firebase-firestore.js"></script> -->
     <!-- <script defer src="/__/firebase/8.8.1/firebase-functions.js"></script> -->
     <!-- <script defer src="/__/firebase/8.8.1/firebase-messaging.js"></script> -->
@@ -52,12 +53,18 @@
                 Imagine organizing your entire itinerary in advance, then receiving and sharing real time updates as you travel. Effortlessly immerse yourself in communities and support local businesses, all from one website.
               </p>
               <div class="is-centered"></div>
-                <button class="button is-light" onclick="signIn()">
+                <button id="signInButton" class="button is-light" onclick="signIn()">
                   <span class="icon is-normal">
                     <i class="fab fa-google"></i>
                   </span>
                   <span>Sign in with Google</span>
                 </button>
+                <a id="gotoPortalButton" class="button is-light is-hidden" href="userPortal.html">
+                  <span class="icon is-normal">
+                    <i class="fas fa-route"></i>
+                  </span>
+                  <span>Go to trip planner</span>
+                </a>
               </div>
             </div>
           </div>
