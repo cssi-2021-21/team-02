@@ -15,9 +15,9 @@ window.onload = (event) => {
   });
 };
 
-const heartClicked = () => {
+const heartClicked = (id) => {
   // toggle heart
-  let heartButton = document.querySelector("#heartButton");
+  let heartButton = document.querySelector(`#${id}`);
   // check if it's filled
   if (!heartButton.innerHTML.includes("border")) {
     heartButton.innerHTML = `<i class="material-icons" style="color: red">favorite_border</i>`;

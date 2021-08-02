@@ -105,7 +105,7 @@
           </div>
         </div>
         <div id="app" class="row columns is-multiline">
-          <div v-for="card in cardData" key="card.id" class="column is-4">
+          <div v-for="(card, index) in cardData" key="card.id" class="column is-4">
             <div class="card large">
               <div class="card-image">
                 <figure class="image is-16by9">
@@ -129,7 +129,7 @@
                   <div class="level is-mobile">
                     <div class="level-left">
                       <div class="level-item has-text-centered">
-                        <a id="heartButton" onclick="heartClicked()">
+                        <a v-bind:id="'heartButton' + index" onclick="heartClicked(this.id)">
                           <i class="material-icons" style="color: red"
                             >favorite_border</i
                           >
