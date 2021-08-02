@@ -1,7 +1,12 @@
 let googleUserId = "";
 let nId = "";
+let googleUser;
+let userName = "";
+let userEmail = "";
 
 let profileName = document.querySelector("#name-greeting");
+let profileName2 = document.querySelector("#profile-name2");
+let submitProfileButton = document.querySelector("#submitProfile");
 
 
 window.onload = (event) => {
@@ -11,7 +16,34 @@ window.onload = (event) => {
     if (user) {
       console.log('Logged in as: ' + user.displayName);
       googleUserId = user.uid;
+      googleUser = user;
       profileName.innerHTML = "Hello, " + user.displayName;
+      profileName2.innerHTML = user.displayName;
+
+      userName = document.querySelector('#input-username');
+      userEmail = document.querySelector('#input-email');
+      const userFirstName = document.querySelector('#input-first-name');
+      const userLastName = document.querySelector('#input-last-name');
+      const userAddress = document.querySelector('#input-address');
+      const userCity = document.querySelector('#input-city');
+      const userCountry = document.querySelector('#input-country');
+      const userZipCode = document.querySelector('#input-postal-code');
+      const userAboutMe = document.querySelector('#about-me');
+      console.log("Hello testing");
+    
+      firebase.database().ref(`users/${googleUser.uid}`).push({
+        username: userName.value,
+        email: userEmail.value,
+        firstName: userFirstName.value,
+        lastName: userLastName.value,
+        address: userAddress.value,
+        city: userCity.value,
+        country: userCountry.value,
+        zipCode: userZipCode.value,
+        aboutMe: userAboutMe.value
+      })
+
+      
     } else {
       // If not logged in, navigate back to login page.
       window.location = 'index.html';
@@ -19,84 +51,73 @@ window.onload = (event) => {
   });
 };
 
-/* const getNotes = (userId) => {
-  const notesRef = firebase.database().ref(`users/${userId}`);
-  notesRef.orderByChild('title').on('value', (snapshot) => {
-    //const data = snapshot.val();
-    //renderDataAsHtml(data);
-    //console.log(snapshot);
-    writeDataAsHtml(snapshot);
-  });
-};
+/* function editProfile () {
 
-const writeDataAsHtml = (data) => {
-    let cards = ``
-    data.forEach((child) => {
-        const noteKey = child.key;
-        const noteData = child.val();
-        console.log(noteData);
-        cards += createCard(noteData, noteKey);
-
+    console.log("edit profile clicked");
+    //1. Capture the form data
+    const userName = document.querySelector('#input-username');
+    const userEmail = document.querySelector('#input-email');
+    const userFirstName = document.querySelector('#input-first-name');
+    const userLastName = document.querySelector('#input-last-name');
+    const userAddress = document.querySelector('#input-address');
+    const userCity = document.querySelector('#input-city');
+    const userCountry = document.querySelector('#input-country');
+    const userZipCode = document.querySelector('#input-postal-code');
+    const userAboutMe = document.querySelector('#about-me');
+    console.log("Hello testing");
+    //2. format the data and write it to the database
+    firebase.database().ref(`users/${googleUser.uid}`).push({
+        username: userName.value,
+        email: userEmail.value,
+        firstName: userFirstName.value,
+        lastName: userLastName.value,
+        address: userAddress.value,
+        city: userCity.value,
+        country: userCountry.value,
+        zipCode: userZipCode.value,
+        aboutMe: userAboutMe.value
+    })
+    .then(() => {
+    userName.value = "";
+    userCity.value = "";
     });
-    document.querySelector('#app').innerHTML = cards;
+    
+} */
+
+function editProfile () {
+
+    console.log("edit profile clicked");
+    const editNoteModal = document.querySelector('#editNoteModal');
+    const profileRef = firebase.database().ref(`users/${googleUserId}`);
+    profileRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+       
+        document.querySelector('#editUserName').value = userName;
+        document.querySelector('#editEmail').value = userEmail;
+        
+    });
+    editNoteModal.classList.toggle('is-active');
 }
 
-const renderDataAsHtml = (data) => {
-  let cards = ``
-  
-  for (const noteItem in data) {
-    const note = data[noteItem];
-    // For each note create an HTML card
-    cards += createCard(note, noteItem)
-  };
-  // Inject our string of HTML into our viewNotes.html page
-  document.querySelector('#app').innerHTML = cards;
-};
-
-const createCard = (note, noteId) => {
-    const colorOptions = ['#56C4E8', '#D0E068', '#CD9EC0', '#ED839D', '#FFE476'];
-    const backgroundColor = colorOptions[Math.floor(Math.random() * colorOptions.length)]
-  return `
-    <div class="column is-one-quarter">
-      <div class="card" style="background:${backgroundColor};">
-        <header class="card-header">
-          <p class="card-header-title">${note.title}</p>
-        </header>
-        <div class="card-content">
-          <div class="content">${note.text}</div>
-        </div>
-        <footer class = "card-footer">
-            <a href="#" class="card-footer-item" onclick="editNote('${noteId}')">
-                Edit
-            </a>
-            <a href="#" class="card-footer-item" onclick="deleteNote('${noteId}')">
-                Delete
-            </a>
-        </footer>
-      </div>
-    </div>
-  `;
+const submitProfile = () => {
+    const userName = document.querySelector("#editUserName").value;
+    const userEmail = document.querySelector("#editEmail").value;
+    const profileEdits = {
+        username: userName.value,
+        email: userEmail.value,
+    }
+    firebase.database().ref(`users/${googleUserId}/`).update(profileEdits);
+    closeEditModal();
 }
 
-const deleteNote = (noteId) => {
-    console.log("delete pressed")
-    const deleteCheckModal = document.querySelector('#deleteCheckModal');
-    const notesRef = firebase.database().ref(`users/${googleUserId}`);
-    nId = noteId;
-    deleteCheckModal.classList.toggle('is-active');
+const closeEditModal = () => {
+    const editNoteModal = document.querySelector('#editNoteModal');
+    editNoteModal.classList.toggle('is-active');
 }
 
-const deleteCard = (noteId) => {
-    console.log("in deletenode" + noteId);
-    firebase.database().ref(`users/${googleUserId}/${noteId}`).remove();
-    deleteCheckModal.classList.toggle('is-active');
-}
 
-const cancelDelete = () => {
-    const deleteCheckModal = document.querySelector('#deleteCheckModal');
-    deleteCheckModal.classList.toggle('is-active');
-}
-
+/* 
 const editNote = (noteId) => {
     const editNoteModal = document.querySelector('#editNoteModal');
     const notesRef = firebase.database().ref(`users/${googleUserId}`);
