@@ -1,3 +1,5 @@
+// TOOD: Load card data from firebase
+
 let cardsData = [
   {
     id: 1,

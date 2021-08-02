@@ -7,14 +7,23 @@
 
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/7dc3015a44.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet" href="../css/cards.css">
-
+    <link rel="stylesheet" href="../css/cards.css" />
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
@@ -46,33 +55,45 @@
               is-8 is-offset-2 is-6-widescreen is-offset-3-widescreen
             "
           >
-            <p class="title is-1 has-text-info has-text-weight-bold"><i class="fas fa-route mr-2"></i>DiscoverIt</p>
+            <p class="title is-1 has-text-info has-text-weight-bold">
+              <i class="fas fa-route mr-2"></i>DiscoverIt
+            </p>
             <div class="container area-center">
               <p class="title is-9 has-text-centered">
-                Your perfect trip,
-                crowdsourced
+                Your perfect trip, crowdsourced
               </p>
               <p class="subtitle is-4">
-                Imagine organizing your entire itinerary in advance, then receiving and sharing real time updates as you travel. Effortlessly immerse yourself in communities and support local businesses, all from one website.
+                Imagine organizing your entire itinerary in advance, then
+                receiving and sharing real time updates as you travel.
+                Effortlessly immerse yourself in communities and support local
+                businesses, all from one website.
               </p>
               <div class="is-centered"></div>
-                <button id="signInButton" class="button is-light" onclick="signIn()">
-                  <span class="icon is-normal">
-                    <i class="fab fa-google"></i>
-                  </span>
-                  <span>Sign in with Google</span>
-                </button>
-                <a id="gotoPortalButton" class="button is-light is-hidden" href="userPortal.html">
-                  <span class="icon is-normal">
-                    <i class="fas fa-route"></i>
-                  </span>
-                  <span>Go to trip planner</span>
-                </a>
-              </div>
+              <button
+                id="signInButton"
+                class="button is-light"
+                onclick="signIn()"
+              >
+                <span class="icon is-normal">
+                  <i class="fab fa-google"></i>
+                </span>
+                <span>Sign in with Google</span>
+              </button>
+              <a
+                id="gotoPortalButton"
+                class="button is-light is-hidden"
+                href="userPortal.html"
+              >
+                <span class="icon is-normal">
+                  <i class="fas fa-route"></i>
+                </span>
+                <span>Go to trip planner</span>
+              </a>
             </div>
           </div>
         </div>
       </div>
+      <!-- </div> -->
       <!-- <div class="hero-foot">
         <div class="container has-text-centered">
           <p class="footer-text">
@@ -90,7 +111,10 @@
       <div class="section">
         <div class="columns">
           <div class="column has-text-centered">
-            <h1 class="title" style="color: ghostwhite;">Bulma Card Layout Template</h1><br>
+            <h1 class="title" style="color: ghostwhite">
+              Bulma Card Layout Template
+            </h1>
+            <br />
           </div>
         </div>
         <div id="app" class="row columns is-multiline">
@@ -98,27 +122,47 @@
             <div class="card large">
               <div class="card-image">
                 <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
+                  <img :src="card.image" alt="Image" />
                 </figure>
               </div>
               <div class="card-content">
                 <div class="media">
                   <div class="media-left">
                     <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
+                      <img :src="card.avatar" alt="Image" />
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
+                    <p class="title is-5 no-padding">{{card.user.title}}</p>
                     <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
+                      <span class="title is-6"> {{card.user.handle}} </span>
+                    </p>
+                    <!-- <p class="subtitle is-6">{{card.user.title}}</p> -->
+                  </div>
+                  <div class="level is-mobile">
+                    <div class="level-left">
+                      <div class="level-item has-text-centered">
+                        <a id="heartButton" onclick="heartClicked()">
+                          <i class="material-icons" style="color: red"
+                            >favorite_border</i
+                          >
+                        </a>
+                      </div>
+                      <div class="level-item has-text-centered">
+                        <div>
+                          <a href="">
+                            <i class="material-icons">chat_bubble_outline</i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="content">
                   {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
+                  <div class="background-icon">
+                    <span class="icon-twitter"></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -130,14 +174,25 @@
       <div class="container">
         <div class="content has-text-centered">
           <div class="soc">
-            <a href="#"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
+            <a href="#"
+              ><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i
+            ></a>
+            <a href="#"
+              ><i class="fa fa-youtube fa-lg" aria-hidden="true"></i
+            ></a>
+            <a href="#"
+              ><i class="fa fa-facebook fa-lg" aria-hidden="true"></i
+            ></a>
+            <a href="#"
+              ><i class="fa fa-twitter fa-lg" aria-hidden="true"></i
+            ></a>
           </div>
           <p>
-            <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>.
-            The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. <br>
+            <strong>Bulma</strong> by
+            <a href="http://jgthms.com">Jeremy Thomas</a>. The source code is
+            licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+            <br />
           </p>
         </div>
       </div>
@@ -148,12 +203,11 @@
     <!-- Using Vue to populate cards to reduce redundant code -->
     <script>
       var app = new Vue({
-        el: '#app',
+        el: "#app",
         data: {
-          cardData: cardsData
-        }
-      })
-
+          cardData: cardsData,
+        },
+      });
     </script>
   </body>
 </html>
