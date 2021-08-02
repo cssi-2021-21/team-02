@@ -8,29 +8,28 @@ let profileName = document.querySelector("#name-greeting");
 let profileName2 = document.querySelector("#profile-name2");
 let submitProfileButton = document.querySelector("#submitProfile");
 
-
 window.onload = (event) => {
-    console.log("hello there")
+  console.log("hello there");
   // Use this to retain user state between html pages.
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      console.log('Logged in as: ' + user.displayName);
+      console.log("Logged in as: " + user.displayName);
       googleUserId = user.uid;
       googleUser = user;
       profileName.innerHTML = "Hello, " + user.displayName;
       profileName2.innerHTML = user.displayName;
 
-      userName = document.querySelector('#input-username');
-      userEmail = document.querySelector('#input-email');
-      const userFirstName = document.querySelector('#input-first-name');
-      const userLastName = document.querySelector('#input-last-name');
-      const userAddress = document.querySelector('#input-address');
-      const userCity = document.querySelector('#input-city');
-      const userCountry = document.querySelector('#input-country');
-      const userZipCode = document.querySelector('#input-postal-code');
-      const userAboutMe = document.querySelector('#about-me');
+      userName = document.querySelector("#input-username");
+      userEmail = document.querySelector("#input-email");
+      const userFirstName = document.querySelector("#input-first-name");
+      const userLastName = document.querySelector("#input-last-name");
+      const userAddress = document.querySelector("#input-address");
+      const userCity = document.querySelector("#input-city");
+      const userCountry = document.querySelector("#input-country");
+      const userZipCode = document.querySelector("#input-postal-code");
+      const userAboutMe = document.querySelector("#about-me");
       console.log("Hello testing");
-    
+
       firebase.database().ref(`users/${googleUser.uid}`).push({
         username: userName.value,
         email: userEmail.value,
@@ -40,14 +39,12 @@ window.onload = (event) => {
         city: userCity.value,
         country: userCountry.value,
         zipCode: userZipCode.value,
-        aboutMe: userAboutMe.value
-      })
-
-      
+        aboutMe: userAboutMe.value,
+      });
     } else {
       // If not logged in, navigate back to login page.
-      window.location = 'index.html';
-    };
+      window.location = "index.html";
+    }
   });
 };
 
@@ -84,38 +81,35 @@ window.onload = (event) => {
     
 } */
 
-function editProfile () {
+const editProfile = () => {
+  console.log("edit profile clicked");
+  const editNoteModal = document.querySelector("#editNoteModal");
+  const profileRef = firebase.database().ref(`users/${googleUserId}`);
+  profileRef.on("value", (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
 
-    console.log("edit profile clicked");
-    const editNoteModal = document.querySelector('#editNoteModal');
-    const profileRef = firebase.database().ref(`users/${googleUserId}`);
-    profileRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        console.log(data);
-       
-        document.querySelector('#editUserName').value = userName;
-        document.querySelector('#editEmail').value = userEmail;
-        
-    });
-    editNoteModal.classList.toggle('is-active');
-}
+    document.querySelector("#editUserName").value = userName;
+    document.querySelector("#editEmail").value = userEmail;
+  });
+  editNoteModal.classList.toggle("is-active");
+};
 
 const submitProfile = () => {
-    const userName = document.querySelector("#editUserName").value;
-    const userEmail = document.querySelector("#editEmail").value;
-    const profileEdits = {
-        username: userName.value,
-        email: userEmail.value,
-    }
-    firebase.database().ref(`users/${googleUserId}/`).update(profileEdits);
-    closeEditModal();
-}
+  const userName = document.querySelector("#editUserName").value;
+  const userEmail = document.querySelector("#editEmail").value;
+  const profileEdits = {
+    username: userName.value,
+    email: userEmail.value,
+  };
+  firebase.database().ref(`users/${googleUserId}/`).update(profileEdits);
+  closeEditModal();
+};
 
 const closeEditModal = () => {
-    const editNoteModal = document.querySelector('#editNoteModal');
-    editNoteModal.classList.toggle('is-active');
-}
-
+  const editNoteModal = document.querySelector("#editNoteModal");
+  editNoteModal.classList.toggle("is-active");
+};
 
 /* 
 const editNote = (noteId) => {
