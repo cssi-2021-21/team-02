@@ -1648,12 +1648,13 @@ a.text-white:focus {
 
 .form-control-label {
   font-size: .875rem;
-  font-weight: 600;
-  color: #525f7f;
+  font-weight: 1000;
+  color: black;
 }
 
 .form-control {
   font-size: .875rem;
+  color: black;
 }
 
 .form-control:focus:-ms-input-placeholder {
