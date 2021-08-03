@@ -63,3 +63,8 @@ function switchProfile () {
     window.location = 'profile.html';
 
 }
+
+function switchToItinerary () {
+    console.log("itinerary page");
+    window.location = 'tripPlanner.html';
+}
