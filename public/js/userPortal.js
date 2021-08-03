@@ -64,6 +64,12 @@ function switchProfile () {
 
 }
 
+function switchToPictureGallery (){
+
+    console.log("pictureGallery page");
+    window.location = 'pictureGallery.html';
+}
+
 function switchToItinerary () {
     console.log("itinerary page");
     window.location = 'tripPlanner.html';
