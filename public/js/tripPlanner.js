@@ -37,4 +37,13 @@ function createTrip () {
       console.log(destinationChoice.value);
       console.log(googleUserId);
 
+      firebase.database().ref(`users/${googleUser.uid}`).push({
+        destination: destinationChoice.value,
+        firstDate: startDate.value,
+        lastDate: endDate.value
+      }) 
+      .then(() => {
+        
+      }); 
+
 }
