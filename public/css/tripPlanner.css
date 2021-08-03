@@ -79,6 +79,7 @@ nav.navbar {
   color: #8f99a3;
 }
 .card-footer-item:hover {
+    
 }
 .card-table .table {
   margin-bottom: 0;
@@ -86,4 +87,20 @@ nav.navbar {
 .events-card .card-table {
   max-height: 250px;
   overflow-y: scroll;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+.PlanPageHeader__image {
+    height: 240px;
+}
+.w-100 {
+    width: 100%!important;
+}
+img, svg {
+    vertical-align: middle;
+}
+img {
+    border-style: none;
 }

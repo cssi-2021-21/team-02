@@ -9,6 +9,7 @@ let endDate = "";
 destinationChoice = document.querySelector("#destinationChoice");
 startDate = document.querySelector("#startDate");
 endDate = document.querySelector("#endDate");
+tripDetailSection = document.querySelector("#tripDetails");
 
 window.onload = (event) => {
   console.log("trip planner page loaded");
@@ -18,8 +19,6 @@ window.onload = (event) => {
       console.log("Logged in as: " + user.displayName);
       googleUserId = user.uid;
       googleUser = user;
-      profileName.innerHTML = "Hello, " + user.displayName;
-      profileName2.innerHTML = user.displayName;
       console.log("Hello testing");
       console.log("User ID: "  + googleUserId);
 
@@ -43,7 +42,9 @@ function createTrip () {
         lastDate: endDate.value
       }) 
       .then(() => {
-        
+        console.log("removing hidden");
+        tripDetailSection.classList.remove("hidden");
       }); 
 
 }
+

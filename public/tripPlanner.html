@@ -71,49 +71,12 @@
       <div class="columns">
         <div class="column is-3">
           <aside class="menu is-hidden-mobile">
-            <p class="menu-label">General</p>
-            <ul class="menu-list">
-              <li><a class="is-active">Dashboard</a></li>
-              <li><a>Customers</a></li>
-              <li><a>Other</a></li>
-            </ul>
-            <p class="menu-label">Administration</p>
-            <ul class="menu-list">
-              <li><a>Team Settings</a></li>
-              <li>
-                <a>Manage Your Team</a>
-                <ul>
-                  <li><a>Members</a></li>
-                  <li><a>Plugins</a></li>
-                  <li><a>Add a member</a></li>
-                  <li><a>Remove a member</a></li>
-                </ul>
-              </li>
-              <li><a>Invitations</a></li>
-              <li><a>Cloud Storage Environment Settings</a></li>
-              <li><a>Authentication</a></li>
-              <li><a>Payments</a></li>
-            </ul>
-            <p class="menu-label">Transactions</p>
-            <ul class="menu-list">
-              <li><a>Payments</a></li>
-              <li><a>Transfers</a></li>
-              <li><a>Balance</a></li>
-              <li><a>Reports</a></li>
-            </ul>
+            
           </aside>
         </div>
+        <center>
         <div class="column is-9">
-          <nav class="breadcrumb" aria-label="breadcrumbs">
-            <ul>
-              <li><a href="../">Bulma</a></li>
-              <li><a href="../">Templates</a></li>
-              <li><a href="../">Examples</a></li>
-              <li class="is-active">
-                <a href="#" aria-current="page">Admin</a>
-              </li>
-            </ul>
-          </nav>
+        
           <section class="hero is-info welcome is-small">
             <div class="hero-body">
               <div class="container">
@@ -139,13 +102,19 @@
           <br>
           <button class="mb-2" id="beginTrip" class="button is-light" onclick="createTrip()" >Begin Planning</button>
 
-    <section class="hidden">
-        <br>
+    <div class="PlanPageHeader">
+        <section id="tripDetails" class="hidden">
+            <br>
+            <div class="PlanPageHeader__imgContainer w-100 position-absolute">
+                <img id="destinationImage" alt="Image placeholder" src="https://lp-cms-production.imgix.net/2021-04/shutterstockRF_713119015.jpg">
+            </div>
 
 
-        <p>Hello World</p>
-    </section>          
-
+            <p>Hello World</p>
+        </section>    
+    </div>
+          
+</center>
         </div>
       </div>
     </div>
