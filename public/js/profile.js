@@ -2,6 +2,7 @@ let googleUserId = "";
 let nId = "";
 let googleUser;
 
+
 //global variables for creating profile
 let userName = "";
 let userEmail = "";
@@ -17,6 +18,19 @@ let profileName = document.querySelector("#name-greeting");
 let profileName2 = document.querySelector("#profile-name2");
 let submitProfileButton = document.querySelector("#submitProfile");
 
+
+//querySelectors for form values 
+userName = document.querySelector("#input-username");
+userEmail = document.querySelector("#input-email");
+userFirstName = document.querySelector("#input-first-name");
+userLastName = document.querySelector("#input-last-name");
+userAddress = document.querySelector("#input-address");
+userCity = document.querySelector("#input-city");
+userCountry = document.querySelector("#input-country");
+userZipCode = document.querySelector("#input-postal-code");
+userAboutMe = document.querySelector("#about-me");
+
+
 window.onload = (event) => {
   console.log("hello there");
   // Use this to retain user state between html pages.
@@ -30,17 +44,29 @@ window.onload = (event) => {
       console.log("Hello testing");
       console.log("User ID: "  + googleUserId);
 
-      //check later if user is arleady registered then disable the create profile button 
-      //if user exists then load their data and put it in the form
-
+      //This function controls the form information being filled in if the user profile already exists
       var ref = firebase.database().ref(`users/${googleUser.uid}`);
       ref.once("value")
         .then(function(snapshot) {
             if (snapshot.numChildren() == 1){
+
                 document.getElementById("createProfileButton").disabled = true;
-                console.log(snapshot.val());
-                
-                
+                snapshot.forEach((child) => {
+                    
+                    const profileData = child.val();
+                    console.log(profileData);
+                    
+                    userAboutMe.value = profileData.aboutMe;
+                    userFirstName.value = profileData.firstName;
+                    userLastName.value = profileData.lastName;
+                    userName.value = profileData.username;
+                    userAddress.value = profileData.address;
+                    userZipCode.value = profileData.zipCode;
+                    userEmail.value = profileData.email;
+                    userCountry.value = profileData.country;
+                    userCity.value = profileData.city;
+
+                });     
             }
             else if (snapshot.numChildren() == 0){
                 console.log("doesnt exist");
@@ -58,17 +84,7 @@ window.onload = (event) => {
 
 function createProfile (){
 
-      userName = document.querySelector("#input-username");
-      userEmail = document.querySelector("#input-email");
-      userFirstName = document.querySelector("#input-first-name");
-      userLastName = document.querySelector("#input-last-name");
-      userAddress = document.querySelector("#input-address");
-      userCity = document.querySelector("#input-city");
-      userCountry = document.querySelector("#input-country");
-      userZipCode = document.querySelector("#input-postal-code");
-      userAboutMe = document.querySelector("#about-me");
-
-      console.log("working until here");
+      //console.log("working until here");
       console.log(userName.value);
       console.log(googleUserId);
 
@@ -89,56 +105,9 @@ function createProfile (){
 
 }
 
-/* function editProfile () {
-
-    console.log("edit profile clicked");
-    //1. Capture the form data
-    const userName = document.querySelector('#input-username');
-    const userEmail = document.querySelector('#input-email');
-    const userFirstName = document.querySelector('#input-first-name');
-    const userLastName = document.querySelector('#input-last-name');
-    const userAddress = document.querySelector('#input-address');
-    const userCity = document.querySelector('#input-city');
-    const userCountry = document.querySelector('#input-country');
-    const userZipCode = document.querySelector('#input-postal-code');
-    const userAboutMe = document.querySelector('#about-me');
-    console.log("Hello testing");
-    //2. format the data and write it to the database
-    firebase.database().ref(`users/${googleUser.uid}`).push({
-        username: userName.value,
-        email: userEmail.value,
-        firstName: userFirstName.value,
-        lastName: userLastName.value,
-        address: userAddress.value,
-        city: userCity.value,
-        country: userCountry.value,
-        zipCode: userZipCode.value,
-        aboutMe: userAboutMe.value
-    })
-    .then(() => {
-    userName.value = "";
-    userCity.value = "";
-    });
-    
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function backToHome () {
+    window.location = "userPortal.html"
+}
 
 const editProfile = () => {
   console.log("edit profile clicked");
