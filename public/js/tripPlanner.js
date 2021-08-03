@@ -54,7 +54,7 @@ function createTrip () {
 
 }
 
-submitButton.addEventListener("click", (e) => {
+/*submitButton.addEventListener("click", (e) => {
   let myKey = 'amaZYdG5z8O5726r5QxdDAv2MYEw3vpY';
   let topicChoice = queryField.value;
   console.log(topicChoice);
@@ -80,5 +80,5 @@ submitButton.addEventListener("click", (e) => {
   }
 }
 });
-
+*/
 
