@@ -100,6 +100,7 @@ firebase
   .database()
   .ref("users")
   .on("value", (snapshot) => {
+    cardsData.length = 0;
     const data = snapshot.val();
     for (let key in data) {
       const userData = data[key];
