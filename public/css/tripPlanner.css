@@ -7,6 +7,9 @@ body {
   height: 100%;
   background: #ecf0f3;
 }
+.hidden{
+    display: none;
+}
 nav.navbar {
   border-top: 4px solid #276cda;
   margin-bottom: 1rem;
