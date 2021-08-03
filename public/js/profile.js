@@ -1,8 +1,17 @@
 let googleUserId = "";
 let nId = "";
 let googleUser;
+
+//global variables for creating profile
 let userName = "";
 let userEmail = "";
+let userFirstName = "";
+let userLastName = "";
+let userAddress = "";
+let userCountry = "";
+let userCity = "";
+let userZipCode = "";
+let userAboutMe = "";
 
 let profileName = document.querySelector("#name-greeting");
 let profileName2 = document.querySelector("#profile-name2");
@@ -18,17 +27,50 @@ window.onload = (event) => {
       googleUser = user;
       profileName.innerHTML = "Hello, " + user.displayName;
       profileName2.innerHTML = user.displayName;
+      console.log("Hello testing");
+      console.log("User ID: "  + googleUserId);
+
+      //check later if user is arleady registered then disable the create profile button 
+      //if user exists then load their data and put it in the form
+
+      var ref = firebase.database().ref(`users/${googleUser.uid}`);
+      ref.once("value")
+        .then(function(snapshot) {
+            if (snapshot.numChildren() == 1){
+                document.getElementById("createProfileButton").disabled = true;
+                console.log(snapshot.val());
+                
+                
+            }
+            else if (snapshot.numChildren() == 0){
+                console.log("doesnt exist");
+            }
+            
+      });
+
+    } 
+    else {
+      // If not logged in, navigate back to login page.
+      window.location = "index.html";
+    } 
+  });
+}
+
+function createProfile (){
 
       userName = document.querySelector("#input-username");
       userEmail = document.querySelector("#input-email");
-      const userFirstName = document.querySelector("#input-first-name");
-      const userLastName = document.querySelector("#input-last-name");
-      const userAddress = document.querySelector("#input-address");
-      const userCity = document.querySelector("#input-city");
-      const userCountry = document.querySelector("#input-country");
-      const userZipCode = document.querySelector("#input-postal-code");
-      const userAboutMe = document.querySelector("#about-me");
-      console.log("Hello testing");
+      userFirstName = document.querySelector("#input-first-name");
+      userLastName = document.querySelector("#input-last-name");
+      userAddress = document.querySelector("#input-address");
+      userCity = document.querySelector("#input-city");
+      userCountry = document.querySelector("#input-country");
+      userZipCode = document.querySelector("#input-postal-code");
+      userAboutMe = document.querySelector("#about-me");
+
+      console.log("working until here");
+      console.log(userName.value);
+      console.log(googleUserId);
 
       firebase.database().ref(`users/${googleUser.uid}`).push({
         username: userName.value,
@@ -40,13 +82,12 @@ window.onload = (event) => {
         country: userCountry.value,
         zipCode: userZipCode.value,
         aboutMe: userAboutMe.value,
-      });
-    } else {
-      // If not logged in, navigate back to login page.
-      window.location = "index.html";
-    }
-  });
-};
+      }) 
+      .then(() => {
+        document.getElementById("createProfileButton").disabled = true;
+      }); 
+
+}
 
 /* function editProfile () {
 
@@ -81,6 +122,24 @@ window.onload = (event) => {
     
 } */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const editProfile = () => {
   console.log("edit profile clicked");
   const editNoteModal = document.querySelector("#editNoteModal");
@@ -89,15 +148,15 @@ const editProfile = () => {
     const data = snapshot.val();
     console.log(data);
 
-    document.querySelector("#editUserName").value = userName;
+    document.querySelector("#editUserName").value = "";
     document.querySelector("#editEmail").value = userEmail;
   });
   editNoteModal.classList.toggle("is-active");
 };
 
 const submitProfile = () => {
-  const userName = document.querySelector("#editUserName").value;
-  const userEmail = document.querySelector("#editEmail").value;
+   userName = document.querySelector("#editUserName").value;
+   userEmail = document.querySelector("#editEmail").value;
   const profileEdits = {
     username: userName.value,
     email: userEmail.value,
