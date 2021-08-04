@@ -129,6 +129,11 @@
                   <div class="level is-mobile">
                     <div class="level-left">
                       <div class="level-item has-text-centered">
+                        <p class="pb-1" v-bind:id="'numHearts' + index" >
+                          5
+                        </p>
+                      </div>
+                      <div class="level-item has-text-centered">
                         <a v-bind:id="'heartButton' + index" onclick="heartClicked(this.id)">
                           <i class="material-icons" style="color: red"
                             >favorite_border</i
