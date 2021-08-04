@@ -10,6 +10,7 @@ destinationChoice = document.querySelector("#destinationChoice");
 startDate = document.querySelector("#startDate");
 endDate = document.querySelector("#endDate");
 tripDetailSection = document.querySelector("#tripDetails");
+destinationPicture = document.querySelector("#destinationImage");
 
 window.onload = (event) => {
   console.log("trip planner page loaded");
@@ -47,9 +48,31 @@ function createTrip () {
 
         let myKey = 'AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY';
         let destPic = destinationChoice.value;
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-        let myQuery = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=' + destPic + ', IL&key=' + myKey + '&inputtype=textquery&fields=name,photos';
+        let myQuery = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=' + destPic + '&key=' + myKey + '&inputtype=textquery&fields=name,photos';
+        fetch(proxyurl+myQuery,{
+            //mode: 'no-cors'
+        })
+          .then(response => response.json())
+          .then(myjson => {
+              let photoreference = myjson.candidates[0].photos[0].photo_reference;
+              console.log(photoreference);
+              let myQuery2 = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + photoreference + '&key=' + myKey + '&maxwidth=400&maxheight=400';
+              
+              fetch(proxyurl+myQuery2)
+              .then(response => response.blob())
+              .then(images => {
+                  console.log(images);
+                  var img = URL.createObjectURL(images);
+                  console.log("Image: " + img);
+                  destinationPicture.src = img;
+              });
 
+            
+
+          });
+          
       }); 
 
 }
@@ -79,6 +102,5 @@ function createTrip () {
     } 
   }
 }
-});
-*/
+}); */
 

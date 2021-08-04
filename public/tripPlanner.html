@@ -24,8 +24,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin - Free Bulma template</title>
+
     <script defer src="js/key.js"></script>
     <script defer src="js/tripPlanner.js"></script>
+
+    <script src="https://apis.google.com/js/api.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        gapi.load('auth2', function() {
+        // Library loaded.
+    });
+    </script>
+
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -105,10 +114,12 @@
     
 
         <div class="PlanPageHeader">
+
             <section id="tripDetails" class="hidden">
+
                 <br>
                 <div class="PlanPageHeader__imgContainer w-100 position-absolute">
-                    <img id="destinationImage" alt="Image placeholder" src="https://lp-cms-production.imgix.net/2021-04/shutterstockRF_713119015.jpg">
+                    <img id="destinationImage" alt="Image placeholder" src="">
                 </div>
 
 
