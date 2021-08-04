@@ -10,6 +10,10 @@ body {
 .hidden{
     display: none;
 }
+.trip-font{
+    font-family: "Lucida Console", monospace!important;
+    font-size: 25px;
+}
 nav.navbar {
   border-top: 4px solid #276cda;
   margin-bottom: 1rem;

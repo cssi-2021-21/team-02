@@ -11,6 +11,8 @@ startDate = document.querySelector("#startDate");
 endDate = document.querySelector("#endDate");
 tripDetailSection = document.querySelector("#tripDetails");
 destinationPicture = document.querySelector("#destinationImage");
+destinationTitle = document.querySelector("#tripTitle");
+destinationDates = document.querySelector("#tripDates");
 
 window.onload = (event) => {
   console.log("trip planner page loaded");
@@ -35,11 +37,14 @@ const uploadTrip = (obj) => {
 
 function createTrip() {
   //console.log("working until here");
-  console.log(destinationChoice.value);
+  console.log("Destination: " + destinationChoice.value);
   console.log(googleUserId);
 
   console.log("removing hidden");
+  console.log("Start Date: " + startDate.value);
   tripDetailSection.classList.remove("hidden");
+  destinationTitle.innerHTML = "Trip to " + destinationChoice.value;
+  //destinationDates.innerHTML = "hello";
 
   let myKey = "AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY";
   let destPic = destinationChoice.value;
@@ -65,7 +70,7 @@ function createTrip() {
         photoreference +
         "&key=" +
         myKey +
-        "&maxwidth=400&maxheight=400";
+        "&maxwidth=700&maxheight=700";
 
       fetch(proxyurl + myQuery2)
         .then((response) => response.blob())
@@ -83,7 +88,7 @@ function createTrip() {
         });
     });
 
-    
+
 
 
 
