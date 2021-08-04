@@ -56,6 +56,8 @@ function createTrip () {
         })
           .then(response => response.json())
           .then(myjson => {
+              let photoRef = myjson.candidates[0].photos[0];
+              console.log(photoRef);
               let photoreference = myjson.candidates[0].photos[0].photo_reference;
               console.log(photoreference);
               let myQuery2 = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + photoreference + '&key=' + myKey + '&maxwidth=400&maxheight=400';
