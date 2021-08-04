@@ -1,4 +1,4 @@
-let cardsData2 = [];
+let cardsData = [];
 
 firebase
   .database()
@@ -22,32 +22,30 @@ firebase
       for (let key2 in userData) {
         let map = userData[key2];
         if (!("firstName" in map)) {
-          console.log(name, map);
           let card = {
             id: 1,
-            image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-            avatar: loadImages()
+            image: loadImages(map["destination"]),
+            avatar:
+              "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
             user: {
               handle: name,
               title: map["destination"],
             },
             content: "From: " + map["firstDate"] + " to " + map["lastDate"],
           };
-          cardsData2.push(card);
+          cardsData.push(card);
         }
       }
     }
   });
 
-const loadImages = () => {
-  console.log("LOAD IMAGES");
-
+const loadImages = (destination) => {
   let myKey = "AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY";
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
   let myQuery =
     "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
-    destPic +
+    destination +
     "&key=" +
     myKey +
     "&inputtype=textquery&fields=name,photos";
@@ -57,9 +55,7 @@ const loadImages = () => {
     .then((response) => response.json())
     .then((myjson) => {
       let photoRef = myjson.candidates[0].photos[0];
-      console.log(photoRef);
       let photoreference = myjson.candidates[0].photos[0].photo_reference;
-      console.log(photoreference);
       let myQuery2 =
         "https://maps.googleapis.com/maps/api/place/photo?photoreference=" +
         photoreference +
@@ -70,15 +66,16 @@ const loadImages = () => {
       fetch(proxyurl + myQuery2)
         .then((response) => response.blob())
         .then((images) => {
-          console.log(images);
           var img = URL.createObjectURL(images);
+          console.log("Image: ", img);
           return img;
         });
     });
+};
 
 var app = new Vue({
   el: "#app",
   data: {
-    cardData: cardsData2,
+    cardData: cardsData,
   },
 });
