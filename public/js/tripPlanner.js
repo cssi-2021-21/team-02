@@ -82,6 +82,12 @@ function createTrip() {
           uploadTrip(tripObj);
         });
     });
+
+    
+
+
+
+
   // .then(() => {
   //   firebase.database().ref(`users/${googleUser.uid}`).push({
   //     destination: destinationChoice.value,
