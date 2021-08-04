@@ -21,62 +21,124 @@ window.onload = (event) => {
       googleUserId = user.uid;
       googleUser = user;
       console.log("Hello testing");
-      console.log("User ID: "  + googleUserId);
-
-    } 
-    else {
+      console.log("User ID: " + googleUserId);
+    } else {
       // If not logged in, navigate back to login page.
       window.location = "index.html";
-    } 
+    }
   });
 };
 
-function createTrip () {
+const uploadTrip = (obj) => {
+  firebase.database().ref(`users/${googleUser.uid}`).push(obj);
+};
 
-      //console.log("working until here");
-      console.log(destinationChoice.value);
-      console.log(googleUserId);
+function createTrip() {
+  //console.log("working until here");
+  console.log(destinationChoice.value);
+  console.log(googleUserId);
 
-      firebase.database().ref(`users/${googleUser.uid}`).push({
-        destination: destinationChoice.value,
-        firstDate: startDate.value,
-        lastDate: endDate.value
-      }) 
-      .then(() => {
-        console.log("removing hidden");
-        tripDetailSection.classList.remove("hidden");
+  console.log("removing hidden");
+  tripDetailSection.classList.remove("hidden");
 
-        let myKey = 'AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY';
-        let destPic = destinationChoice.value;
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  let myKey = "AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY";
+  let destPic = destinationChoice.value;
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-        let myQuery = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=' + destPic + '&key=' + myKey + '&inputtype=textquery&fields=name,photos';
-        fetch(proxyurl+myQuery,{
-            //mode: 'no-cors'
-        })
-          .then(response => response.json())
-          .then(myjson => {
-              let photoRef = myjson.candidates[0].photos[0];
-              console.log(photoRef);
-              let photoreference = myjson.candidates[0].photos[0].photo_reference;
-              console.log(photoreference);
-              let myQuery2 = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + photoreference + '&key=' + myKey + '&maxwidth=400&maxheight=400';
-              
-              fetch(proxyurl+myQuery2)
-              .then(response => response.blob())
-              .then(images => {
-                  console.log(images);
-                  var img = URL.createObjectURL(images);
-                  console.log("Image: " + img);
-                  destinationPicture.src = img;
-              });
+  let myQuery =
+    "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
+    destPic +
+    "&key=" +
+    myKey +
+    "&inputtype=textquery&fields=name,photos";
+  fetch(proxyurl + myQuery, {
+    //mode: 'no-cors'
+  })
+    .then((response) => response.json())
+    .then((myjson) => {
+      let photoRef = myjson.candidates[0].photos[0];
+      console.log(photoRef);
+      let photoreference = myjson.candidates[0].photos[0].photo_reference;
+      console.log(photoreference);
+      let myQuery2 =
+        "https://maps.googleapis.com/maps/api/place/photo?photoreference=" +
+        photoreference +
+        "&key=" +
+        myKey +
+        "&maxwidth=400&maxheight=400";
 
-            
+      fetch(proxyurl + myQuery2)
+        .then((response) => response.blob())
+        .then((images) => {
+          console.log(images);
+          var img = URL.createObjectURL(images);
+          console.log("Image: " + img);
+          destinationPicture.src = img;
+          let tripObj = {
+            destination: destinationChoice.value,
+            firstDate: startDate.value,
+            lastDate: endDate.value,
+          };
+          uploadTrip(tripObj);
+        });
+    });
+  // .then(() => {
+  //   firebase.database().ref(`users/${googleUser.uid}`).push({
+  //     destination: destinationChoice.value,
+  //     firstDate: startDate.value,
+  //     lastDate: endDate.value,
+  //     imgURL: img,
+  //   });
+  // });
 
-          });
-          
-      }); 
+  // firebase
+  //   .database()
+  //   .ref(`users/${googleUser.uid}`)
+  //   .push({
+  //     destination: destinationChoice.value,
+  //     firstDate: startDate.value,
+  //     lastDate: endDate.value,
+  //   })
+  //   .then(() => {
+  //     console.log("removing hidden");
+  //     tripDetailSection.classList.remove("hidden");
 
+  //     let myKey = "AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY";
+  //     let destPic = destinationChoice.value;
+  //     const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+  //     let myQuery =
+  //       "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
+  //       destPic +
+  //       "&key=" +
+  //       myKey +
+  //       "&inputtype=textquery&fields=name,photos";
+  //     fetch(proxyurl + myQuery, {
+  //       //mode: 'no-cors'
+  //     })
+  //       .then((response) => response.json())
+  //       .then((myjson) => {
+  //         let photoRef = myjson.candidates[0].photos[0];
+  //         console.log(photoRef);
+  //         let photoreference = myjson.candidates[0].photos[0].photo_reference;
+  //         console.log(photoreference);
+  //         let myQuery2 =
+  //           "https://maps.googleapis.com/maps/api/place/photo?photoreference=" +
+  //           photoreference +
+  //           "&key=" +
+  //           myKey +
+  //           "&maxwidth=400&maxheight=400";
+
+  //         fetch(proxyurl + myQuery2)
+  //           .then((response) => response.blob())
+  //           .then((images) => {
+  //             console.log(images);
+  //             var img = URL.createObjectURL(images);
+  //             console.log("Image: " + img);
+  //             destinationPicture.src = img;
+  //           });
+  //       });
+  //   });
 }
 
 /*submitButton.addEventListener("click", (e) => {
@@ -105,4 +167,3 @@ function createTrip () {
   }
 }
 }); */
-

@@ -122,8 +122,7 @@ firebase
           let card = {
             id: 1,
             image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-            avatar:
-              "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
+            avatar: map["imgURL"],
             user: {
               handle: name,
               title: map["destination"],
