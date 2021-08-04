@@ -41,10 +41,11 @@ function createTrip() {
   console.log(googleUserId);
 
   console.log("removing hidden");
-  console.log("Start Date: " + startDate.value);
+  console.log("Start Date: " + endDate.value);
+  document.getElementById("beginTrip").disabled = true;
   tripDetailSection.classList.remove("hidden");
   destinationTitle.innerHTML = "Trip to " + destinationChoice.value;
-  //destinationDates.innerHTML = "hello";
+  destinationDates.innerHTML = "Dates: " + startDate.value + " to " + endDate.value;
 
   let myKey = "AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY";
   let destPic = destinationChoice.value;
