@@ -1,99 +1,3 @@
-// TOOD: Load card data from firebase
-
-let cardsData = [
-  {
-    id: 1,
-    image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-    avatar:
-      "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
-    user: {
-      name: "Okinami",
-      handle: "twitterid",
-      title: "Lead Developer",
-    },
-    content:
-      "The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.",
-  },
-  {
-    id: 1,
-    image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-    avatar:
-      "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
-    user: {
-      name: "Okinami",
-      handle: "twitterid",
-      title: "Lead Developer",
-    },
-    content:
-      "The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.",
-  },
-  {
-    id: 1,
-    image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-    avatar:
-      "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
-    user: {
-      name: "Okinami",
-      handle: "twitterid",
-      title: "Lead Developer",
-    },
-    content:
-      "The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.",
-  },
-  {
-    id: 1,
-    image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-    avatar:
-      "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
-    user: {
-      name: "Okinami",
-      handle: "twitterid",
-      title: "Lead Developer",
-    },
-    content:
-      "The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.",
-  },
-  {
-    id: 1,
-    image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-    avatar:
-      "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
-    user: {
-      name: "Okinami",
-      handle: "twitterid",
-      title: "Lead Developer",
-    },
-    content:
-      "The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.",
-  },
-  {
-    id: 1,
-    image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-    avatar:
-      "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
-    user: {
-      name: "Okinami",
-      handle: "twitterid",
-      title: "Lead Developer",
-    },
-    content:
-      "The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.",
-  },
-  {
-    id: 1,
-    image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-    avatar:
-      "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
-    user: {
-      name: "Okinami",
-      handle: "twitterid",
-      title: "Lead Developer",
-    },
-    content:
-      "The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.",
-  },
-];
-
 let cardsData2 = [];
 
 firebase
@@ -122,7 +26,7 @@ firebase
           let card = {
             id: 1,
             image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-            avatar: map["imgURL"],
+            avatar: loadImages()
             user: {
               handle: name,
               title: map["destination"],
@@ -134,6 +38,43 @@ firebase
       }
     }
   });
+
+const loadImages = () => {
+  console.log("LOAD IMAGES");
+
+  let myKey = "AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY";
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+  let myQuery =
+    "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
+    destPic +
+    "&key=" +
+    myKey +
+    "&inputtype=textquery&fields=name,photos";
+  fetch(proxyurl + myQuery, {
+    //mode: 'no-cors'
+  })
+    .then((response) => response.json())
+    .then((myjson) => {
+      let photoRef = myjson.candidates[0].photos[0];
+      console.log(photoRef);
+      let photoreference = myjson.candidates[0].photos[0].photo_reference;
+      console.log(photoreference);
+      let myQuery2 =
+        "https://maps.googleapis.com/maps/api/place/photo?photoreference=" +
+        photoreference +
+        "&key=" +
+        myKey +
+        "&maxwidth=400&maxheight=400";
+
+      fetch(proxyurl + myQuery2)
+        .then((response) => response.blob())
+        .then((images) => {
+          console.log(images);
+          var img = URL.createObjectURL(images);
+          return img;
+        });
+    });
 
 var app = new Vue({
   el: "#app",
