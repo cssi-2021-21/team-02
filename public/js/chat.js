@@ -26,7 +26,6 @@ msgerForm.addEventListener("submit", (event) => {
   const msgText = msgerInput.value;
   if (!msgText) return;
 
-  appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
   postChat(PERSON_NAME, msgText);
   msgerInput.value = "";
 });
