@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bad-words": "^3.0.4",
+    "firebase": "^8.8.1"
+  }
+}

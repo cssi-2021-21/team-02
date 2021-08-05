@@ -1,17 +1,17 @@
 let cardsData = [];
 
-// let card = {
-//   id: 1,
-//   image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
-//   avatar:
-//     "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
-//   user: {
-//     handle: name,
-//     title: "Tokyo",
-//   },
-//   content: "From: sometime to sometime",
-// };
-// cardsData.push(card);
+let card = {
+  id: 1,
+  image: "https://source.unsplash.com/h-ACUrBngrw/1280x720",
+  avatar:
+    "https://banner2.cleanpng.com/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg",
+  user: {
+    handle: name,
+    title: "Tokyo",
+  },
+  content: "From: sometime to sometime",
+};
+cardsData.push(card);
 
 const loadFirebase = () => {
   firebase
@@ -88,7 +88,7 @@ const loadImages = async (destination) => {
   return img;
 };
 
-loadFirebase();
+// loadFirebase();
 
 var app = new Vue({
   el: "#app",
