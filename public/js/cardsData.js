@@ -31,7 +31,7 @@ let cardsData = [
       handle: "David",
       title: "Tokyo",
     },
-    content: "From 10/27 to 10/38",
+    content: "From 10/27 to 11/02",
   },
   {
     id: 1,
