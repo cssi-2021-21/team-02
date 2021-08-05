@@ -8,7 +8,7 @@ let cardsData = [
       handle: "Divya",
       title: "Melbourne",
     },
-    content: "From: 8/5 to 8/11",
+    content: "From 8/5 to 8/11",
   },
   {
     id: 1,
@@ -19,7 +19,7 @@ let cardsData = [
       handle: "David",
       title: "Berlin",
     },
-    content: "From: 9/11 to 9/27",
+    content: "From 9/11 to 9/27",
   },
   {
     id: 1,
@@ -31,7 +31,7 @@ let cardsData = [
       handle: "David",
       title: "Tokyo",
     },
-    content: "From: 10/27 to 10/38",
+    content: "From 10/27 to 10/38",
   },
   {
     id: 1,
@@ -42,7 +42,7 @@ let cardsData = [
       handle: "Nithila",
       title: "Paris",
     },
-    content: "From: 12/12 to 12/14",
+    content: "From 12/12 to 12/14",
   },
   {
     id: 1,
@@ -54,7 +54,7 @@ let cardsData = [
       handle: "David",
       title: "New York City",
     },
-    content: "From: 8/11 to 8/12",
+    content: "From 8/11 to 8/12",
   },
   {
     id: 1,
@@ -65,7 +65,7 @@ let cardsData = [
       handle: "Nithila",
       title: "Mumbai",
     },
-    content: "From: 9/5 to 9/15",
+    content: "From 9/5 to 9/15",
   },
 ];
 
