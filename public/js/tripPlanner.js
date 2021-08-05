@@ -52,7 +52,7 @@ function createTrip() {
   let destPic = destinationChoice.value;
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-  let myQuery =
+  /* let myQuery =
     "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
     destPic +
     "&key=" +
@@ -60,7 +60,7 @@ function createTrip() {
     "&inputtype=textquery&fields=name,photos";
   fetch(proxyurl + myQuery, {
     //mode: 'no-cors'
-  })
+  }) 
     .then((response) => response.json())
     .then((myjson) => {
       let photoRef = myjson.candidates[0].photos[0];
@@ -87,7 +87,7 @@ function createTrip() {
             lastDate: endDate.value,
           };
           uploadTrip(tripObj);
-        });
+        });  */
 
         let placeDetailsQuery = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=points+of+interest+in+' + destPic + '&rankby=prominence&type=tourist_attraction&key=' + myKey;
         fetch(proxyurl + placeDetailsQuery)
@@ -125,11 +125,11 @@ function createTrip() {
             //document.querySelector('#app').innerHTML = cards;
             
         });
-    });
+    };
 
 
 function createCard (name, address, rating, placePhoto) {
-    console.log("hello this function is called");
+    console.log("this function is called");
     return `
     <div class="column is-one-quarter">
       <div class="card" >
@@ -147,9 +147,5 @@ function createCard (name, address, rating, placePhoto) {
 
 
 
-
-
-
-}
 
 
