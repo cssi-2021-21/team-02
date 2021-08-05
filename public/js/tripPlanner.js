@@ -52,7 +52,7 @@ function createTrip() {
   let destPic = destinationChoice.value;
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-  /* let myQuery =
+  let myQuery =
     "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
     destPic +
     "&key=" +
@@ -85,16 +85,16 @@ function createTrip() {
             destination: destinationChoice.value,
             firstDate: startDate.value,
             lastDate: endDate.value,
-          };
+            };
           uploadTrip(tripObj);
-        });  */
+        });  
 
         let placeDetailsQuery = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=points+of+interest+in+' + destPic + '&rankby=prominence&type=tourist_attraction&key=' + myKey;
         fetch(proxyurl + placeDetailsQuery)
         .then((response) => response.json())
         .then((placeSearchJson) => {
             console.log("IM HERE:" + placeSearchJson);
-            for(let i = 0; i < 2; i++){
+            for(let i = 0; i < 1; i++){
                 let placeName = placeSearchJson.results[i].name;
                 let placeAddress = placeSearchJson.results[i].formatted_address;
                 let placeRating = placeSearchJson.results[i].rating;
@@ -108,7 +108,7 @@ function createTrip() {
                     photoReference2 +
                     "&key=" +
                     myKey +
-                    "&maxwidth=400&maxheight=400";
+                    "&maxwidth=700&maxheight=500";
 
                 fetch(proxyurl + photoQuery2)
                 .then((response) => response.blob())
@@ -116,28 +116,31 @@ function createTrip() {
                     console.log(images);
                     var img2 = URL.createObjectURL(images);
                     console.log("Image Again: " + img2);
-                    //cards += createCard(placeName, placeAddress, placeRating, img2);
-                    //console.log(cards);                    
+                    cards += createCard(placeName, placeAddress, placeRating, img2);
+                    document.querySelector('#app').innerHTML = cards;
+                    console.log(cards);                    
                 });
                 
             }
-            //console.log(cards);
-            //document.querySelector('#app').innerHTML = cards;
             
         });
-    };
+    });
 
 
 function createCard (name, address, rating, placePhoto) {
     console.log("this function is called");
     return `
-    <div class="column is-one-quarter">
-      <div class="card" >
+    <div class="column is-full">
+      <div class="card" style="background:#e3f8fa;">
         <header class="card-header">
-          <p class="card-header-title">${name}</p>
+          <p class="card-header-title" id="card-header-title">${name}</p>
         </header>
         <div class="card-content">
           <div class="content">${address}</div>
+          <div class="content">Rating: ${rating} <i class="far fa-star"></i></div>
+        </div>
+        <div class = "card-picture">
+            <img id="touristPic" alt="Image placeholder" src="${placePhoto}">
         </div>
       </div>
     </div>
@@ -146,6 +149,6 @@ function createCard (name, address, rating, placePhoto) {
 }
 
 
-
+}
 
 
