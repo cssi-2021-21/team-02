@@ -4,6 +4,26 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+     <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.8.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-database.js"></script>
+    <!-- <script defer src="/__/firebase/8.8.1/firebase-firestore.js"></script> -->
+    <!-- <script defer src="/__/firebase/8.8.1/firebase-functions.js"></script> -->
+    <!-- <script defer src="/__/firebase/8.8.1/firebase-messaging.js"></script> -->
+    <!-- <script defer src="/__/firebase/8.8.1/firebase-storage.js"></script> -->
+    <!-- <script defer src="/__/firebase/8.8.1/firebase-analytics.js"></script> -->
+    <!-- <script defer src="/__/firebase/8.8.1/firebase-remote-config.js"></script> -->
+    <!-- <script defer src="/__/firebase/8.8.1/firebase-performance.js"></script> -->
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    
     <title>Picture Gallery</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -26,10 +46,10 @@
       <div class="navbar-brand">
         <a class="navbar-item">
           <img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
-            alt="Bulma"
+            src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_home_48px-512.png"
+            width="50"
+            height="50"
+            alt="Home"
           />
         </a>
       </div>
@@ -59,8 +79,16 @@
         </a>
       </div>
     </div>
+    
     <div class="columns body-columns">
       <div class="column is-half is-offset-one-quarter">
+        <center>
+                <p class="upload-text">Click on the button to upload a file!</p>
+                
+                <input type="file" id="file-upload"/>
+                
+        </center>
+
         <div class="card">
           <div class="header">
             <div class="media">
@@ -313,5 +341,9 @@
         </footer>
       </div>
     </div>
+
+    <script src = "js/pictureGallery.js">
+    
+    </script>
   </body>
 </html>
