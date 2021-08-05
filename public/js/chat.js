@@ -9,15 +9,19 @@ const db = firebase.database();
 
 const PERSON_NAME = prompt("What's your name?");
 
-const fetchChat = db.ref("messages/");
-fetchChat.on("child_added", function (snapshot) {
-  const messages = snapshot.val();
-  appendMessage(
-    messages.usr,
-    PERSON_IMG,
-    messages.usr === PERSON_NAME ? "right" : "left",
-    messages.msg
-  );
+const fetchChat = db.ref("messages");
+fetchChat.on("value", function (snapshot) {
+  msgerChat.innerHTML = "";
+  const data = snapshot.val();
+  for (let key in data) {
+    const messages = data[key];
+    appendMessage(
+      messages.usr,
+      PERSON_IMG,
+      messages.usr === PERSON_NAME ? "right" : "left",
+      messages.msg
+    );
+  }
 });
 
 msgerForm.addEventListener("submit", (event) => {

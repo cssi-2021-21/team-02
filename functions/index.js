@@ -10,7 +10,7 @@ exports.detectEvilUsers = functions.database
     functions.logger.log("*", snapshot.val());
     const { msg, usr } = snapshot.val();
 
-    if (filter.isProfane(text)) {
+    if (filter.isProfane(msg)) {
       const cleaned = filter.clean(msg);
       return snapshot.ref.update({
         msg: `${cleaned}`,
