@@ -94,7 +94,7 @@ function createTrip() {
         .then((response) => response.json())
         .then((placeSearchJson) => {
             console.log("IM HERE:" + placeSearchJson);
-            for(let i = 0; i < 1; i++){
+            for(let i = 0; i < 3; i++){
                 let placeName = placeSearchJson.results[i].name;
                 let placeAddress = placeSearchJson.results[i].formatted_address;
                 let placeRating = placeSearchJson.results[i].rating;
