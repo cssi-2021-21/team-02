@@ -12,7 +12,7 @@ exports.detectEvilUsers = functions.database
 
     if (filter.isProfane(text)) {
       const cleaned = filter.clean(msg);
-      await doc.ref.update({
+      return snapshot.ref.update({
         msg: `${cleaned}`,
       });
     }
