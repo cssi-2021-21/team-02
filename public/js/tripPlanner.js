@@ -1,6 +1,7 @@
 let googleUserId = "";
 let nId = "";
 let googleUser;
+let cards = ``
 
 let destinationChoice = "";
 let startDate = "";
@@ -87,95 +88,68 @@ function createTrip() {
           };
           uploadTrip(tripObj);
         });
+
+        let placeDetailsQuery = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=points+of+interest+in+' + destPic + '&rankby=prominence&type=tourist_attraction&key=' + myKey;
+        fetch(proxyurl + placeDetailsQuery)
+        .then((response) => response.json())
+        .then((placeSearchJson) => {
+            console.log("IM HERE:" + placeSearchJson);
+            for(let i = 0; i < 2; i++){
+                let placeName = placeSearchJson.results[i].name;
+                let placeAddress = placeSearchJson.results[i].formatted_address;
+                let placeRating = placeSearchJson.results[i].rating;
+                let photoReference2 = placeSearchJson.results[i].photos[0].photo_reference;
+                console.log("Place Name: " + placeName);
+                console.log("Place Address: " + placeAddress);
+                console.log("Place Rating: " + placeRating);
+                console.log("Place Photo Ref: " + photoReference2);
+                let photoQuery2 =
+                    "https://maps.googleapis.com/maps/api/place/photo?photoreference=" +
+                    photoReference2 +
+                    "&key=" +
+                    myKey +
+                    "&maxwidth=400&maxheight=400";
+
+                fetch(proxyurl + photoQuery2)
+                .then((response) => response.blob())
+                .then((images) => {
+                    console.log(images);
+                    var img2 = URL.createObjectURL(images);
+                    console.log("Image Again: " + img2);
+                    //cards += createCard(placeName, placeAddress, placeRating, img2);
+                    //console.log(cards);                    
+                });
+                
+            }
+            //console.log(cards);
+            //document.querySelector('#app').innerHTML = cards;
+            
+        });
     });
 
 
+function createCard (name, address, rating, placePhoto) {
+    console.log("hello this function is called");
+    return `
+    <div class="column is-one-quarter">
+      <div class="card" >
+        <header class="card-header">
+          <p class="card-header-title">${name}</p>
+        </header>
+        <div class="card-content">
+          <div class="content">${address}</div>
+        </div>
+      </div>
+    </div>
+  `;
 
-
-
-
-  // .then(() => {
-  //   firebase.database().ref(`users/${googleUser.uid}`).push({
-  //     destination: destinationChoice.value,
-  //     firstDate: startDate.value,
-  //     lastDate: endDate.value,
-  //     imgURL: img,
-  //   });
-  // });
-
-  // firebase
-  //   .database()
-  //   .ref(`users/${googleUser.uid}`)
-  //   .push({
-  //     destination: destinationChoice.value,
-  //     firstDate: startDate.value,
-  //     lastDate: endDate.value,
-  //   })
-  //   .then(() => {
-  //     console.log("removing hidden");
-  //     tripDetailSection.classList.remove("hidden");
-
-  //     let myKey = "AIzaSyDhcyOsHp-sFAtQhsTahxpCRGfCHfxphYY";
-  //     let destPic = destinationChoice.value;
-  //     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-
-  //     let myQuery =
-  //       "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
-  //       destPic +
-  //       "&key=" +
-  //       myKey +
-  //       "&inputtype=textquery&fields=name,photos";
-  //     fetch(proxyurl + myQuery, {
-  //       //mode: 'no-cors'
-  //     })
-  //       .then((response) => response.json())
-  //       .then((myjson) => {
-  //         let photoRef = myjson.candidates[0].photos[0];
-  //         console.log(photoRef);
-  //         let photoreference = myjson.candidates[0].photos[0].photo_reference;
-  //         console.log(photoreference);
-  //         let myQuery2 =
-  //           "https://maps.googleapis.com/maps/api/place/photo?photoreference=" +
-  //           photoreference +
-  //           "&key=" +
-  //           myKey +
-  //           "&maxwidth=400&maxheight=400";
-
-  //         fetch(proxyurl + myQuery2)
-  //           .then((response) => response.blob())
-  //           .then((images) => {
-  //             console.log(images);
-  //             var img = URL.createObjectURL(images);
-  //             console.log("Image: " + img);
-  //             destinationPicture.src = img;
-  //           });
-  //       });
-  //   });
 }
 
-/*submitButton.addEventListener("click", (e) => {
-  let myKey = 'amaZYdG5z8O5726r5QxdDAv2MYEw3vpY';
-  let topicChoice = queryField.value;
-  console.log(topicChoice);
-  topicText.innerHTML = "Topic: " + topicChoice;
-  document.getElementById("answerSubmit").disabled = false;
-  for (let i = 0; i < topicArray.length; i++){
-    for (let j = 0; j < topicArray[i].length; j++){
-      console.log(topicArray[i][j]);
-      var questionText = "";
-      if (topicArray[i][j] == topicChoice){
-        let topicID = topicArray[i][j+1];
-        console.log(topicID);
-        let myQuery = `https://jservice.io/api/clues?category=` + topicID; 
-        fetch(myQuery)
-          .then(response => response.json())
-          .then(myjson => {
-          console.log(myjson[0].question); 
-          const questionText = myjson[0].question;
-          actualQuestion.innerHTML = questionText;
-        });
-        
-    } 
-  }
+
+
+
+
+
 }
-}); */
+
+
