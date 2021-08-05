@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/chat.css" />
+    <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.8.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <title>Live Chat</title>
+  </head>
+  <body>
+    <section class="hero is-fullheight">
+      <div class="hero-body">
+        <div>
+          <img
+            src="https://content.fortune.com/wp-content/uploads/2021/04/GettyImages-1232096107.jpg"
+          />
+        </div>
+
+        <section class="msger">
+          <header class="msger-header">
+            <div class="msger-header-title">
+              <i class="fas fa-comment-alt"></i> NYC Chat
+            </div>
+            <div class="msger-header-options">
+              <span><i class="fas fa-cog"></i></span>
+            </div>
+          </header>
+
+          <main class="msger-chat"></main>
+
+          <form class="msger-inputarea">
+            <input
+              type="text"
+              class="msger-input"
+              placeholder="Enter your message..."
+            />
+            <button type="submit" class="msger-send-btn">Send</button>
+          </form>
+        </section>
+        <!-- <div id="chat">
+          <ul id="messages"></ul>
+          <form id="send-message">
+            <input id="chat-txt" type="text" />
+            <button id="chat-btn" type="submit">Submit</button>
+          </form>
+        </div> -->
+      </div>
+    </section>
+
+    <script defer src="js/chat.js"></script>
+  </body>
+</html>
