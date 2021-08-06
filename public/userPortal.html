@@ -87,7 +87,7 @@
             <div class="field is-grouped">
               <p class="control">
                 <a
-                  class="bd-tw-button button"
+                  class="bd-tw-button button button is-info"
                   data-social-network="Twitter"
                   data-social-action="tweet"
                   data-social-target="#"
@@ -116,7 +116,7 @@
                 </a>
               </p>
               <p class="control">
-                <a class="button is-primary" onclick="signOut()">
+                <a class="button is-info" onclick="signOut()">
                   <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>
                   </span>
@@ -135,7 +135,7 @@
           <!--- <h2 class="subtitle">Let's get started with your journey...</h2> --->
         </div>
       </div>
-      <div class="tabs is-boxed is-centered main-menu" id="nav">
+      <div class="tabs is-boxed is-centered main-menu" id="nav" style="background:#0e3f72">
         <ul>
           <li data-target="pane-1" id="1">
             <a href = "#" onclick="switchToPictureGallery()">
@@ -166,7 +166,7 @@
           </li>
         </ul>
       </div>
-      <div class=" tab-content">
+      <div class=" tab-content" style= "background-image: url('https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')">
 
 
         <div class="pic-gallery tab-pane" id="pane-1">
@@ -289,16 +289,11 @@
 
         <div class="tab-pane is-active" id="pane-2">
           <div class="content">
-             <button id="switchPagePlanner" class="button is-light" onclick="switchToItinerary()" >Start Planning a Trip</button>
-            <h1>Hello World</h1>
-            <p>
-              Lorem ipsum<sup><a>[1]</a></sup> dolor sit amet, consectetur
-              adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida,
-              nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut
-              vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel,
-              interdum mattis neque. Sub<sub>script</sub> works as well!
-            </p>
-            
+
+            <center>
+             <button id="switchPagePlanner" class="button is-info is-medium" onclick="switchToItinerary()" >Start Planning a Trip</button>
+            </center>
+
           </div>
         </div>
       </div>

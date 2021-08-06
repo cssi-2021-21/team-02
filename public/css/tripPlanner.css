@@ -10,9 +10,20 @@ body {
 .hidden{
     display: none;
 }
+.date-style{
+    font-family: "Times New Roman", serif!important;
+    font-size: 20px;
+    color: black;
+}
+.date-style-text{
+    font-family: "Times New Roman", serif!important;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
 .header{
     font-size: 40px;
-    font-family: "Lucida Console", monospace!important;
+    font-family: "Monaco", monospace!important;
 }
 .trip-font{
     font-family: "Lucida Console", monospace!important;
