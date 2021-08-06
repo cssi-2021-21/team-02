@@ -41,6 +41,7 @@
         gapi.load('auth2', function() {
         // Library loaded.
     });
+
     </script>
 
     <link
@@ -59,7 +60,7 @@
     <link rel="stylesheet" type="text/css" href="css/tripPlanner.css" />
   </head>
 
-  <body>
+  <body style="background-color: #f5ebf5">
     <!-- START NAV -->
     <nav class="navbar is-white">
       <div class="container">
@@ -76,15 +77,8 @@
       </div>
     </nav>
     <!-- END NAV -->
-    <div class="container">
-      <div class="columns">
-        <div class="column is-3">
-          <aside class="menu is-hidden-mobile">
-            
-          </aside>
-        </div>
+    <div class="container" >
         <center>
-       
           <section class="hero is-info welcome is-small">
             <div class="hero-body">
               <div class="container">
@@ -93,7 +87,7 @@
             </div>
           </section>
 
-          <br />
+          <br/>
           <div>
             <input
               class="input is-primary mb-2"
@@ -101,14 +95,14 @@
               type="text"
               placeholder="Where to?"
             />
-            <label>Start Date:</label>
-            <input id="startDate" type="date" value="2021-08-06" />
-            <label>End Date:</label>
-            <input id="endDate" type="date" value="2021-08-06" />
+            <label class="date-style-text">Start Date:</label>
+            <input id="startDate" class="date-style" type="date" value="2021-08-06" />
+            <label class="date-style-text">End Date:</label>
+            <input id="endDate" class="date-style" type="date" value="2021-08-06" />
           </div>
 
           <br>
-          <button class="mb-2" id="beginTrip" class="button is-light" onclick="createTrip()" >Begin Planning</button>
+          <button class="mb-2 button is-warning" id="beginTrip" onclick="createTrip()" >Begin Planning</button>
     
 
         <div class="PlanPageHeader">
@@ -138,14 +132,40 @@
                 <div id="app" class="columns is-multiline">
                     <!-- Note cards will render here -->
                 </div>
-                                
-                
+
+                <h1 class="header">
+                    Itinerary
+                </h1>
+                <input class="input is-primary" type="text" id="itineraryDate" placeholder="Date">
+                <input class="input is-primary" type="text" id="itineraryPlans" placeholder="Plans/Notes...">
+
+                <br>
+
+                <button class="mb-2 button is-light" id="submitPlans" onclick="plan()" >Create Itinerary</button>
+
+                <br>
+                      
+                <table class="table is-striped" id="itineraryTable" width="100%"">
+                    <thead>
+                        <tr class="is-selected">
+                            <th><abbr title="Date Planned">Date</abbr></th>
+                            <th><abbr title="Plans">Plan Ideas</abbr></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <th>8/15</th>
+                            <td>Go to the top of the Empire State Building</td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </section>    
         </div>
   
           
-    </center>
-        </div>
+        </center>
+        
       </div>
     </div>
     <script async type="text/javascript" src="../js/bulma.js"></script>

@@ -14,6 +14,9 @@ tripDetailSection = document.querySelector("#tripDetails");
 destinationPicture = document.querySelector("#destinationImage");
 destinationTitle = document.querySelector("#tripTitle");
 destinationDates = document.querySelector("#tripDates");
+itineraryDate = document.querySelector("#itineraryDate");
+itineraryPlan = document.querySelector("#itineraryPlans");
+itineraryTable = document.querySelector("#itineraryTable");
 
 window.onload = (event) => {
   console.log("trip planner page loaded");
@@ -35,6 +38,36 @@ window.onload = (event) => {
 const uploadTrip = (obj) => {
   firebase.database().ref(`users/${googleUser.uid}`).push(obj);
 };
+
+function plan() {
+    console.log("creating itinerary");
+
+    firebase.database().ref(`users/${googleUser.uid}`).push({
+        chosenDate: itineraryDate.value,
+        chosenPlans: itineraryPlan.value
+    })
+    .then(() => {
+        generateItinerary(itineraryDate.value, itineraryPlan.value);
+        itineraryDate.value = "";
+        itineraryPlan.value = "";
+
+    });
+}
+
+
+function generateItinerary(itineraryDate, itineraryPlan){
+   // Create an empty <tr> element and add it to the 1st position of the table:
+    var row = itineraryTable.insertRow(1);
+
+
+    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+
+    // Add some text to the new cells:
+    cell1.innerHTML = itineraryDate;
+    cell2.innerHTML = itineraryPlan;
+} 
 
 function createTrip() {
   //console.log("working until here");
@@ -94,7 +127,7 @@ function createTrip() {
         .then((response) => response.json())
         .then((placeSearchJson) => {
             console.log("IM HERE:" + placeSearchJson);
-            for(let i = 0; i < 1; i++){
+            for(let i = 0; i < 3; i++){
                 let placeName = placeSearchJson.results[i].name;
                 let placeAddress = placeSearchJson.results[i].formatted_address;
                 let placeRating = placeSearchJson.results[i].rating;
@@ -147,7 +180,6 @@ function createCard (name, address, rating, placePhoto) {
   `;
 
 }
-
 
 }
 

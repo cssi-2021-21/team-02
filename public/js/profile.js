@@ -39,8 +39,8 @@ window.onload = (event) => {
       console.log("Logged in as: " + user.displayName);
       googleUserId = user.uid;
       googleUser = user;
-      profileName.innerHTML = "Hello, " + user.displayName;
-      profileName2.innerHTML = user.displayName;
+      profileName.innerHTML = "   Hello, " + user.displayName;
+      profileName2.innerHTML = "  " + user.displayName;
       console.log("Hello testing");
       console.log("User ID: "  + googleUserId);
 
